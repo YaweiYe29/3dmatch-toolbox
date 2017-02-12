@@ -7,3 +7,11 @@
 /PCL-benchmark/old.txt
 /PCL-benchmark/test.ply
 /old
+*.bin
+marvin
+.project
+.cproject
+*.marvin
+backup
+data
+demo
