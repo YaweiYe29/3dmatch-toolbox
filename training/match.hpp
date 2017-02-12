@@ -125,8 +125,10 @@ public:
   void shuffle() {};
 
   // Given a depth map and the pixel coordinates of a point p, compute the local volumetric voxel grid of TDF values around p
-  void GetLocalPointvoxel_grid_TDF(int pix_x, int pix_y, float * cam_K, float * depth_im_p1, int im_height, int im_width, float * voxel_grid_TDF, int voxel_grid_dim, float voxel_size, float trunc_margin) {
-
+  void GetLocalPointvoxel_grid_TDF(int pix_x, int pix_y, float * cam_K,
+  float * depth_im_p1, int im_height, int im_width, float * voxel_grid_TDF,
+    int voxel_grid_dim, float voxel_size, float trunc_margin) 
+  {
     // Project pixel location to 3D point in camera coordinates
     float pt_cam_z = depth_im_p1[pix_y * im_width + pix_x];
     float pt_cam_x = ((float)(pix_x) + 0.5f - cam_K[0 * 3 + 2]) * pt_cam_z / cam_K[0 * 3 + 0];
@@ -471,7 +473,8 @@ public:
 
       // Compute TDF voxel grid around p1
       float * voxel_grid_TDF_p1 = new float[num_grid_pts];
-      GetLocalPointvoxel_grid_TDF(p1_pix_x, p1_pix_y, cam_K_p1, depth_im_p1, im_height, im_width, voxel_grid_TDF_p1, voxel_grid_dim, voxel_size, trunc_margin);
+      GetLocalPointvoxel_grid_TDF(p1_pix_x, p1_pix_y, cam_K_p1, depth_im_p1,
+    		  im_height, im_width, voxel_grid_TDF_p1, voxel_grid_dim, voxel_size, trunc_margin);
 
       // For debugging
       // FILE *fp = fopen("debugBaseMatch.txt", "w");
@@ -484,7 +487,8 @@ public:
       // float * depth_im_p2 = new float[im_height * im_width];
       ReadDepth(depth_im_file_p2, im_height, im_width, depth_im_p2);
       float * voxel_grid_TDF_p2 = new float[num_grid_pts];
-      GetLocalPointvoxel_grid_TDF(p2_pix_x, p2_pix_y, cam_K_p2, depth_im_p2, im_height, im_width, voxel_grid_TDF_p2, voxel_grid_dim, voxel_size, trunc_margin);
+      GetLocalPointvoxel_grid_TDF(p2_pix_x, p2_pix_y, cam_K_p2, depth_im_p2,
+    		  im_height, im_width, voxel_grid_TDF_p2, voxel_grid_dim, voxel_size, trunc_margin);
 
       // fp = fopen("debugPosMatch.txt", "w");
       // iret = fprintf(fp, "path:%s x:%d y:%d\n",posFramePrefix.c_str(),corresPosPointX[match_idx],corresPosPointY[match_idx]);
@@ -495,7 +499,8 @@ public:
       // Compute TDF voxel grid around p3
       ReadDepth(depth_im_file_p3, im_height, im_width, depth_im_p3);
       float * voxel_grid_TDF_p3 = new float[num_grid_pts];
-      GetLocalPointvoxel_grid_TDF(p3_pix_x, p3_pix_y, cam_K_p3, depth_im_p3, im_height, im_width, voxel_grid_TDF_p3, voxel_grid_dim, voxel_size, trunc_margin);
+      GetLocalPointvoxel_grid_TDF(p3_pix_x, p3_pix_y, cam_K_p3, depth_im_p3,
+    		  im_height, im_width, voxel_grid_TDF_p3, voxel_grid_dim, voxel_size, trunc_margin);
 
       // fp = fopen("debugNegMatch.txt", "w");
       // iret = fprintf(fp, "path:%s x:%d y:%d\n",negFramePrefix.c_str(),corresNegPointX[match_idx],corresNegPointY[match_idx]);
