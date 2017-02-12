@@ -9,7 +9,7 @@
  */
 
 #if DATATYPE==0
-    #pragma message "Compiling using StorageT=half ComputeT=float"
+    // #pragma message "Compiling using StorageT=half ComputeT=float"
     #define StorageT half
     #define ComputeT float
     #define sizeofStorageT 2
@@ -26,7 +26,7 @@
     #define ComputeT_MIN FLT_MIN
     #include <cuda_fp16.h>
 #elif DATATYPE==1
-    #pragma message "Compiling using StorageT=float ComputeT=float"
+    // #pragma message "Compiling using StorageT=float ComputeT=float"
     #define StorageT float
     #define ComputeT float
     #define sizeofStorageT 4
@@ -42,7 +42,7 @@
     #define ISNAN(x) (std::isnan(x))
     #define ComputeT_MIN FLT_MIN
 #elif DATATYPE==2
-    #pragma message "Compiling using StorageT=double ComputeT=double"
+    // #pragma message "Compiling using StorageT=double ComputeT=double"
     #define StorageT double
     #define ComputeT double
     #define sizeofStorageT 8
@@ -7774,7 +7774,9 @@ public:
     };
 
 
-    void getTopActivations(std::string dataResponseName, std::vector<std::string> responseNames, std::vector<std::vector<int> > responseChannels, std::string saveFilePrefix, int topK, int maxIterations){
+    void getTopActivations(std::string dataResponseName,
+    		std::vector<std::string> responseNames, std::vector<std::vector<int> > responseChannels,
+			std::string saveFilePrefix, int topK, int maxIterations){
 
         phase = Training;
 
@@ -7849,7 +7851,8 @@ public:
                 for (int j=0;j<responseChannels[i].size();++j){
                     int c = responseChannels[i][j];
                     if (c<0 || c >= r->dim[1]){
-                        std::cerr<<"Channel exceeds maximal channel: Indexing Channel "<<c<<" outof "<<r->dim[1]<<" channels in "<<responseNames[i]<<std::endl;
+                        std::cerr<<"Channel exceeds maximal channel: Indexing Channel "<<c
+                        		<<" outof "<<r->dim[1]<<" channels in "<<responseNames[i]<<std::endl;
                         FatalError(__LINE__);
                     }
                     for(int n=0; n<r->dim[0]; ++n){

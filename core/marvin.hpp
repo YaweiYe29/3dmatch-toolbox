@@ -9,7 +9,7 @@
  */
 
 #if DATATYPE==0
-    #pragma message "Compiling using StorageT=half ComputeT=float"
+    // #pragma message "Compiling using StorageT=half ComputeT=float"
     #define StorageT half
     #define ComputeT float
     #define sizeofStorageT 2
@@ -26,7 +26,7 @@
     #define ComputeT_MIN FLT_MIN
     #include <cuda_fp16.h>
 #elif DATATYPE==1
-    #pragma message "Compiling using StorageT=float ComputeT=float"
+    // #pragma message "Compiling using StorageT=float ComputeT=float"
     #define StorageT float
     #define ComputeT float
     #define sizeofStorageT 4
@@ -42,7 +42,7 @@
     #define ISNAN(x) (std::isnan(x))
     #define ComputeT_MIN FLT_MIN
 #elif DATATYPE==2
-    #pragma message "Compiling using StorageT=double ComputeT=double"
+    // #pragma message "Compiling using StorageT=double ComputeT=double"
     #define StorageT double
     #define ComputeT double
     #define sizeofStorageT 8
